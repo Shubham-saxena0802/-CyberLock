@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CyberLock password analysis and secure password generation demo.">
+    <title>CyberLock | Security Workspace</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js" defer></script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-inner">
+            <a class="brand" href="#" aria-label="CyberLock home">
+                <span class="brand-icon" aria-hidden="true">🔐</span>
+                <span>CyberLock</span>
+            </a>
+            <p class="tagline">Your personal cybersecurity workspace</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="intro">
+            <p class="eyebrow">PERSONAL SECURITY TOOLS</p>
+            <h1>Welcome to CyberLock</h1>
+            <p>Check password basics and create stronger, randomly generated passwords.</p>
+        </section>
+
+        <!-- PASSWORD SECURITY WORKSPACE -->
+        <section class="panel" aria-labelledby="password-tools-title">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">TOOLS 01 &amp; 02</p>
+                    <h2 id="password-tools-title">Password Security</h2>
+                </div>
+                <span class="section-icon" aria-hidden="true">🛡️</span>
+            </div>
+
+            <p class="privacy-note">
+                Analyze a password or generate a stronger one. Password analysis happens locally in your browser.
+                Do not enter a real password into this educational demo.
+            </p>
+
+            <!-- PASSWORD TOOL SELECTOR -->
+            <div class="password-tool-selector">
+                <button class="password-tool-button active"
+                        type="button"
+                        data-password-view="analyzerView"
+                        aria-controls="analyzerView">
+                    🔍 Analyze
+                </button>
+
+                <button class="password-tool-button"
+                        type="button"
+                        data-password-view="generatorView"
+                        aria-controls="generatorView">
+                    🔑 Generate
+                </button>
+            </div>
+
+            <!-- PASSWORD ANALYZER -->
+            <div class="password-tool-view" id="analyzerView">
+                <h3 class="subheading">Password Strength Analyzer</h3>
+
+                <label class="field-label" for="password">Enter a sample password</label>
+                <div class="input-with-button">
+                    <input type="password" id="password"
+                           placeholder="Type a password to analyze"
+                           autocomplete="off" spellcheck="false">
+                    <button class="button button-secondary" type="button" id="togglePassword"
+                            aria-pressed="false">Show</button>
+                </div>
+
+                <div class="strength-summary">
+                    <span id="strengthText" aria-live="polite">Not tested</span>
+                    <span id="strengthScore">0 / 5</span>
+                </div>
+
+                <div class="strength-track" role="progressbar"
+                     aria-label="Password requirements met"
+                     aria-valuemin="0" aria-valuemax="5" aria-valuenow="0"
+                     id="strengthProgress">
+                    <div id="strengthBar" class="strength-bar"></div>
+                </div>
+
+                <h3 class="subheading">Password requirements</h3>
+                <ul class="requirements">
+                    <li id="length" data-label="At least 12 characters">✗ At least 12 characters</li>
+                    <li id="uppercase" data-label="Uppercase letter (A–Z)">✗ Uppercase letter (A–Z)</li>
+                    <li id="lowercase" data-label="Lowercase letter (a–z)">✗ Lowercase letter (a–z)</li>
+                    <li id="number" data-label="Number (0–9)">✗ Number (0–9)</li>
+                    <li id="symbol" data-label="Special character (!@#$)">✗ Special character (!@#$)</li>
+                </ul>
+
+                <p id="analyzerMessage" class="feedback" aria-live="polite">
+                    Enter a password to begin analysis.
+                </p>
+            </div>
+
+            <!-- PASSWORD GENERATOR -->
+            <div class="password-tool-view" id="generatorView" hidden>
+                <h3 class="subheading">Secure Password Generator</h3>
+
+                <div class="length-heading">
+                    <label class="field-label" for="lengthRange">Password length</label>
+                    <output id="lengthValue" for="lengthRange">16</output>
+                </div>
+
+                <input class="range-input" type="range" id="lengthRange"
+                       min="8" max="32" value="16">
+
+                <h3 class="subheading">Include character types</h3>
+                <div class="generator-options">
+                    <label class="option"><input type="checkbox" id="includeUpper" checked> Uppercase (A–Z)</label>
+                    <label class="option"><input type="checkbox" id="includeLower" checked> Lowercase (a–z)</label>
+                    <label class="option"><input type="checkbox" id="includeNumbers" checked> Numbers (0–9)</label>
+                    <label class="option"><input type="checkbox" id="includeSymbols" checked> Symbols (!@#$)</label>
+                </div>
+
+                <button class="button button-primary" type="button" id="generateButton">
+                    Generate secure password
+                </button>
+
+                <label class="field-label generated-label" for="generatedPassword">Generated password</label>
+                <div class="input-with-button">
+                    <input type="text" id="generatedPassword"
+                           placeholder="Your generated password will appear here"
+                           readonly autocomplete="off" spellcheck="false">
+                    <button class="button button-secondary" type="button" id="copyButton">Copy</button>
+                </div>
+
+                <p id="generatorMessage" class="feedback" aria-live="polite"></p>
+            </div>
+        </section>
+
+<section class="panel" aria-labelledby="encryption-title">
+
+    <div class="section-heading">
+        <div>
+            <p class="eyebrow">TOOL 03</p>
+            <h2 id="encryption-title">Secure Messaging</h2>
+        </div>
+        <span class="section-icon" aria-hidden="true">🔒</span>
+    </div>
+
+    <p class="privacy-note">
+        Encrypt, retrieve, decrypt or delete securely stored messages.
+    </p>
+
+
+    <div class="message-tool-selector">
+
+        <button class="message-tool-button active"
+                type="button"
+                data-message-view="encryptView">
+            🔒 Encrypt
+        </button>
+
+        <button class="message-tool-button"
+                type="button"
+                data-message-view="retrieveView">
+            📥 Retrieve
+        </button>
+
+        <button class="message-tool-button"
+                type="button"
+                data-message-view="decryptView">
+            🔓 Decrypt
+        </button>
+
+        <button class="message-tool-button"
+                type="button"
+                data-message-view="deleteView">
+            🗑 Delete
+        </button>
+
+    </div>
+
+    <div class="message-view active" id="encryptView">
+
+        <h3 class="subheading">Encrypt a message</h3>
+
+        <label class="field-label" for="plainMessage">
+            Your private message
+        </label>
+        <textarea id="plainMessage"
+            placeholder="Type the message you want to encrypt..."
+            rows="4"></textarea>
+
+        <label class="field-label" for="encryptPassword">
+            Encryption password
+        </label>
+        <input type="password" id="encryptPassword"
+            placeholder="Create an encryption password"
+            autocomplete="new-password">
+
+        <button class="button button-primary" type="button"
+            id="encryptButton">
+            Encrypt Message
+        </button>
+
+        <label class="field-label generated-label" for="encryptedPackage">
+            Encrypted package
+        </label>
+        <textarea id="encryptedPackage" rows="5"
+            placeholder="Your encrypted package will appear here..."
+            readonly></textarea>
+
+        <p id="encryptMessage" class="feedback" aria-live="polite"></p>
+
+    </div>
+
+    <div class="message-view" id="retrieveView" hidden>
+
+        <h3 class="subheading">Retrieve a saved message</h3>
+
+        <label class="field-label" for="messageIDInput">
+            Message ID
+        </label>
+        <input type="text" id="messageIDInput"
+            placeholder="Enter the Message ID">
+
+        <button class="button button-primary" type="button"
+            id="retrieveButton">
+            Retrieve Message
+        </button>
+
+        <p id="retrieveMessage" class="feedback" aria-live="polite"></p>
+
+        <p class="privacy-note">
+            The retrieved encrypted package will be placed in the Decrypt tool.
+        </p>
+
+    </div>
+
+    
+    <div class="message-view" id="decryptView" hidden>
+
+        <h3 class="subheading">Decrypt a message</h3>
+
+        <label class="field-label" for="packageInput">
+            Encrypted package
+        </label>
+        <textarea id="packageInput" rows="5"
+            placeholder="Paste the encrypted package here..."></textarea>
+
+        <label class="field-label" for="decryptPassword">
+            Decryption password
+        </label>
+        <input type="password" id="decryptPassword"
+            placeholder="Enter the original password"
+            autocomplete="current-password">
+
+        <button class="button button-primary" type="button"
+            id="decryptButton">
+            Decrypt Message
+        </button>
+
+        <label class="field-label generated-label" for="decryptedMessage">
+            Decrypted message
+        </label>
+        <textarea id="decryptedMessage" rows="4"
+            placeholder="The decrypted message will appear here..."
+            readonly></textarea>
+
+        <p id="decryptMessage" class="feedback" aria-live="polite"></p>
+
+    </div>
+
+    <div class="message-view" id="deleteView" hidden>
+
+        <h3 class="subheading">Delete a saved message</h3>
+
+        <p class="privacy-note">
+            This permanently removes a saved encrypted message from the server.
+        </p>
+
+        <label class="field-label" for="deleteMessageIDInput">
+            Message ID
+        </label>
+        <input type="text" id="deleteMessageIDInput"
+            placeholder="Enter the Message ID to delete">
+
+        <button class="button button-secondary" type="button"
+            id="deleteButton">
+            Delete Saved Message
+        </button>
+
+        <p id="deleteMessage" class="feedback" aria-live="polite"></p>
+
+    </div>
+
+</section>
+
+
+        <footer class="site-footer">
+            <p>CyberLock is an educational project. Its password score is a simple checklist, not a guarantee of security.</p>
+        </footer>
+    </main>
+</body>
+</html>

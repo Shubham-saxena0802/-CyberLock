@@ -1,0 +1,20 @@
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Compiled executables
+*.exe
+
+# Build directories
+backend/build/
+
+# Temporary uploads
+backend/uploads/
+
+# Editor settings
+.vscode/
+
+# System files
+.DS_Store
+Thumbs.db
